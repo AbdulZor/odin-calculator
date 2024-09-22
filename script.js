@@ -41,7 +41,6 @@ numbers.forEach((val) => {
             display.textContent = '';
         }
         display.textContent += val.textContent;
-        console.log(`display.textContent = ${display.textContent}`);
     });
 });
 
@@ -63,7 +62,6 @@ operators.forEach((val) => {
         switch (val.textContent) {
             case '=':
                 if (leftOperand != null && operator != null) {
-                    console.log(display.textContent)
                     rightOperand = display.textContent;
                     display.textContent = operate(operator, leftOperand, rightOperand);
                     leftOperand = display.textContent;
