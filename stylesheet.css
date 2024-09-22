@@ -28,12 +28,16 @@ body {
 }
 
 .display {
-    flex: 1;
+    /* flex: 1; */
+    height: 100px;
+    border: 30px solid black;
+    text-align: end;
+    font-size: 32px;
 }
 
 .buttons {
     display: flex;
-    flex: 4;
+    flex: 5;
 }
 
 .numbers {
