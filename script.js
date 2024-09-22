@@ -34,14 +34,12 @@ function operate(operator, operandX, operandY) {
 
 const display = document.querySelector('.display');
 const numbers = document.querySelectorAll('.number');
-let displayVal;
 numbers.forEach((val) => {
     val.addEventListener('click', () => {
         if (display.textContent === operator) {
             display.textContent = '';
         }
         display.textContent += val.textContent;
-        // leftOperand = display.textContent;
     });
 });
 
@@ -64,7 +62,14 @@ operators.forEach((val) => {
             case '=':
                 if (leftOperand != null && operator != null) {
                     rightOperand = display.textContent;
-                    display.textContent = operate(operator, leftOperand, rightOperand);
+                    let operateVal = operate(operator, leftOperand, rightOperand);
+                    display.textContent = operateVal;
+
+                    // shorten longer decimals to a fixed number of decimals
+                    if (operateVal.toString().includes('.') && operateVal.toString().length - operateVal.toString().indexOf('.') > 10) {
+                        display.textContent = operateVal.toFixed(10);
+                    }
+
                     leftOperand = display.textContent;
                     operator = null;
                     rightOperand = null;
