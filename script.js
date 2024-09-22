@@ -41,6 +41,7 @@ numbers.forEach((val) => {
             display.textContent = '';
         }
         display.textContent += val.textContent;
+        // leftOperand = display.textContent;
     });
 });
 
@@ -76,13 +77,13 @@ operators.forEach((val) => {
                 display.textContent = '';
                 break;
             default: // normal arithmetic operations
-                if (leftOperand != null && operator != null) {
-                    leftOperand = operate(operator, leftOperand, displayVal);
+                if (leftOperand && operator) {
+                    leftOperand = operate(operator, leftOperand, display.textContent);
                 } else {
                     leftOperand = display.textContent;
                 }
                 operator = val.textContent;
-                display.textContent = val.textContent;
+                display.textContent = operator;
                 break;
         }
 
