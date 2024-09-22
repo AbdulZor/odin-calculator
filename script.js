@@ -27,6 +27,7 @@ function operate(operator, operandX, operandY) {
         case '*':
             return multiply(operandX, operandY);
         case '/':
+            if (operandY == 0) return false;
             return divide(operandX, operandY);
     }
 }
@@ -63,6 +64,11 @@ operators.forEach((val) => {
                 if (leftOperand != null && operator != null) {
                     rightOperand = display.textContent;
                     let operateVal = operate(operator, leftOperand, rightOperand);
+                    if (!operateVal) {
+                        display.textContent = 'Cannot divide by zero';
+                        // resetCalculator();
+                        break;
+                    }
                     display.textContent = operateVal;
 
                     // shorten longer decimals to a fixed number of decimals
@@ -76,14 +82,17 @@ operators.forEach((val) => {
                 }
                 break;
             case 'C':
-                leftOperand = null;
-                rightOperand = null;
-                operator = null;
-                display.textContent = '';
+                resetCalculator();
                 break;
             default: // normal arithmetic operations
                 if (leftOperand && operator) {
-                    leftOperand = operate(operator, leftOperand, display.textContent);
+                    let operateVal = operate(operator, leftOperand, display.textContent);
+                    if (!operateVal) {
+                        display.textContent = 'Cannot divide by zero';
+                        break;
+                    }
+
+                    leftOperand = operateVal
                 } else {
                     leftOperand = display.textContent;
                 }
@@ -94,3 +103,10 @@ operators.forEach((val) => {
 
     })
 });
+
+function resetCalculator() {
+    leftOperand = null;
+    rightOperand = null;
+    operator = null;
+    display.textContent = '';
+}
