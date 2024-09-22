@@ -61,12 +61,11 @@ operators.forEach((val) => {
     val.addEventListener('click', () => {
         switch (val.textContent) {
             case '=':
-                if (leftOperand != null && operator != null) {
+                if (leftOperand && operator) {
                     rightOperand = display.textContent;
                     let operateVal = operate(operator, leftOperand, rightOperand);
                     if (!operateVal) {
                         display.textContent = 'Cannot divide by zero';
-                        // resetCalculator();
                         break;
                     }
                     display.textContent = operateVal;
